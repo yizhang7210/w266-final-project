@@ -1,0 +1,52 @@
+\begin{thebibliography}{1}
+
+\bibitem{Mohawesh2021}
+Rami Mohawesh, Shuxiang Xu, Son~N. Tran, Robert Ollington, Matthew Springer,
+  Yaser Jararweh, and Sumbal Maqsood.
+\newblock Fake reviews detection: A survey.
+\newblock {\em IEEE Access}, 9:65771--65802, 2021.
+
+\bibitem{mukherjee2013yelp}
+Arjun Mukherjee, Vivek Venkataraman, Bing Liu, and Natalie Glance.
+\newblock What yelp fake review filter might be doing?
+\newblock In {\em Seventh international AAAI conference on weblogs and social
+  media}, 2013.
+
+\bibitem{mukherjee2013fake}
+Arjun Mukherjee, Vivek Venkataraman, Bing Liu, Natalie Glance, et~al.
+\newblock Fake review detection: Classification and analysis of real and pseudo
+  reviews.
+\newblock {\em UIC-CS-03-2013. Technical Report}, 2013.
+
+\bibitem{stanton2019gans}
+Gray Stanton and Athirai~A Irissappane.
+\newblock Gans for semi-supervised opinion spam detection.
+\newblock {\em arXiv preprint arXiv:1903.08289}, 2019.
+
+\bibitem{Tang2020}
+Xiaoya Tang, Tieyun Qian, and Zhenni You.
+\newblock Generating behavior features for cold-start spam review detection
+  with adversarial learning.
+\newblock {\em Information Sciences}, 526:274--288, 2020.
+
+\bibitem{wang2020fake}
+Jingdong Wang, Haitao Kan, Fanqi Meng, Qizi Mu, Genhua Shi, and Xixi Xiao.
+\newblock Fake review detection based on multiple feature fusion and rolling
+  collaborative training.
+\newblock {\em IEEE Access}, 8:182625--182639, 2020.
+
+\bibitem{wang2017handling}
+Xuepeng Wang, Kang Liu, and Jun Zhao.
+\newblock Handling cold-start problem in review spam detection by jointly
+  embedding texts and behaviors.
+\newblock In {\em Proceedings of the 55th Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)}, pages 366--376, 2017.
+
+\bibitem{yuan2019learning}
+Chunyuan Yuan, Wei Zhou, Qianwen Ma, Shangwen Lv, Jizhong Han, and Songlin Hu.
+\newblock Learning review representations from user and product level
+  information for spam detection.
+\newblock In {\em 2019 IEEE International Conference on Data Mining (ICDM)},
+  pages 1444--1449. IEEE, 2019.
+
+\end{thebibliography}
