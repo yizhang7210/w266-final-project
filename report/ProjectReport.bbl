@@ -1,4 +1,16 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{barbado2019framework}
+Rodrigo Barbado, Oscar Araque, and Carlos~A Iglesias.
+\newblock A framework for fake review detection in online consumer electronics
+  retailers.
+\newblock {\em Information Processing \& Management}, 56(4):1234--1244, 2019.
+
+\bibitem{ho2013effects}
+Nga~N Ho-Dac, Stephen~J Carson, and William~L Moore.
+\newblock The effects of positive and negative online customer reviews: do
+  brand strength and category maturity matter?
+\newblock {\em Journal of marketing}, 77(6):37--53, 2013.
 
 \bibitem{Mohawesh2021}
 Rami Mohawesh, Shuxiang Xu, Son~N. Tran, Robert Ollington, Matthew Springer,
@@ -17,6 +29,13 @@ Arjun Mukherjee, Vivek Venkataraman, Bing Liu, Natalie Glance, et~al.
 \newblock Fake review detection: Classification and analysis of real and pseudo
   reviews.
 \newblock {\em UIC-CS-03-2013. Technical Report}, 2013.
+
+\bibitem{rayana2015collective}
+Shebuti Rayana and Leman Akoglu.
+\newblock Collective opinion spam detection: Bridging review networks and
+  metadata.
+\newblock In {\em Proceedings of the 21th acm sigkdd international conference
+  on knowledge discovery and data mining}, pages 985--994, 2015.
 
 \bibitem{stanton2019gans}
 Gray Stanton and Athirai~A Irissappane.
