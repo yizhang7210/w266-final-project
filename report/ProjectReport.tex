@@ -34,7 +34,7 @@
 \usepackage{nopageno}
 %\usepackage{MnSymbol}%allows usage of symbol of three dots in a diagonal bottom left to top right (and other dots)
 
-\linespread{1.05}
+\linespread{1.1}
 
 %%%STRUCTURE BUILDER
 \usepackage{amsthm}
@@ -61,7 +61,7 @@
 
 %=========================yz7210==================================================%
 
-\title{Fake Review Detection (Working Title)}
+\title{Tackling imbalanced data in on-line fake review detection}
 \date{\today}
 \author{\IEEEauthorblockN{Satheesh Joseph}
 \and
@@ -81,17 +81,32 @@ Abstract
 
 \section{Introduction}
 \label{intro}
+On-line fake review detection is a relatively well studies subject, especially in recent years, given its outsized impact on consumers engaging in e-commerce activities online. Positive reviews bring a meaningful increase in sales volume to the products\cite{ho2013effects}, and vice versa for negative reviews.
 
-Introduction
+As a result, there has been an increase in opinion spamming activity, and detecting fake reviews has become an essential requirement for on-line marketplaces to maintain the integrity and fairness of their platform.
+
+However, there has been one persisting challenge \cite{stanton2019gans, Tang2020, wang2020fake, yuan2019learning} in this area of research -- the lack of substantial body of actual, proven fake reviews, directly leading to significantly imbalanced datasets.
+
+Our work aims to tackle this problem of data imbalance by borrowing ideas from Generative Adversarial Network (GAN). Our \textbf{hypothesis} is that it's possible to make up the data imbalance by generating fake reviews from a language model trained/fine-tuned on actual fake reviews. We will validate this approach by then training a review detection model on a balanced dataset that includes the generated negative reviews, and achieving comparable results to state-of-the-art research \cite{Tang2020}.
+
 
 \section{Background}
 \label{bg}
+There is no shortage of research tackling the problem of fake review detection. A recent survey \cite{Mohawesh2021} does a great job laying out the landscape of the various techniques and data sets used for fake review detection.
 
-Background.
+According to this survey, all large datasets ($>$20k reviews) from Yelp \cite{rayana2015collective} contain less than $15\%$ actual fake reviews. There are a few other widely used public datasets crawled from TripAdvisor, but they are of much smaller scale, with the fake review training set generated via a manual process from Amazon Mechanical Turk.
+
+The only balanced dataset of moderate volume is crawled from Yelp by Barbado et. al. \cite{barbado2019framework}, however it has not been widely adopted in the research community as a benchmark for detecting fake reviews.
+
+Given this state of the related work, and inspired by Stanton et. al. \cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) of on-line Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
+
+With sufficient representativeness, we believe the generated fake reviews can serve as additional training examples that helps with the detection model to distinguish between genuine reviews and fake ones -- "Happy families are all alike; every unhappy family is unhappy in its own way."
+
+
+WIP:
 
 - Benchmark control group paper \cite{Tang2020}
 
-- Survey paper \cite{Mohawesh2021}
 
 - Data description \cite{wang2017handling}
 
@@ -99,7 +114,6 @@ Background.
 
 - Original data comes from \cite{mukherjee2013fake} \cite{mukherjee2013yelp}
 
-Other papers that we consulted \cite{wang2020fake}, \cite{yuan2019learning}
 
 \section{Methods}
 \label{methods}
