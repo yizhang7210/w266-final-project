@@ -3,3 +3,4 @@ data/
 embedding/
 venv/
 .DS_Store
+elmo_3

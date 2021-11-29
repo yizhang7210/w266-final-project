@@ -81,38 +81,29 @@ Abstract
 
 \section{Introduction}
 \label{intro}
-On-line fake review detection is a relatively well studies subject, especially in recent years, given its outsized impact on consumers engaging in e-commerce activities online. Positive reviews bring a meaningful increase in sales volume to the products\cite{ho2013effects}, and vice versa for negative reviews.
+On-line fake review detection is a relatively well studied subject, especially in recent years, given its outsized impact on consumers engaging in e-commerce activities online. Positive reviews bring a meaningful increase in sales volume to the products~\cite{ho2013effects}, and vice versa for negative reviews.
 
-As a result, there has been an increase in opinion spamming activity, and detecting fake reviews has become an essential requirement for on-line marketplaces to maintain the integrity and fairness of their platform.
+As a result, there has been an increase in opinion spamming activities, and detecting fake reviews has become an essential requirement for on-line marketplaces to maintain the integrity and fairness of their platform.
 
-However, there has been one persisting challenge \cite{stanton2019gans, Tang2020, wang2020fake, yuan2019learning} in this area of research -- the lack of substantial body of actual, proven fake reviews, directly leading to significantly imbalanced datasets.
+However, there has been one persisting challenge~\cite{stanton2019gans, Tang2020, wang2020fake, yuan2019learning} in this area of research -- the lack of substantial body of actually proven fake reviews, directly leading to significantly imbalanced datasets.
 
-Our work aims to tackle this problem of data imbalance by borrowing ideas from Generative Adversarial Network (GAN). Our \textbf{hypothesis} is that it's possible to make up the data imbalance by generating fake reviews from a language model trained/fine-tuned on actual fake reviews. We will validate this approach by then training a review detection model on a balanced dataset that includes the generated negative reviews, and achieving comparable results to state-of-the-art research \cite{Tang2020}.
+Our work aims to tackle this problem of data imbalance by borrowing ideas from Generative Adversarial Network (GAN). Our \textbf{hypothesis} is that it's possible to make up the data imbalance by generating fake reviews from a \textbf{language model} trained and/or fine-tuned on actual fake reviews. We will look to validate this approach by then training a review detection model on a balanced dataset that includes the generated fake reviews, and achieving comparable results to state-of-the-art research~\cite{Tang2020}.
+
+Section \ref{bg} provides the background on the existing research in fake review detection. Section \ref{methods} lays out our methods of constructing the fake review generator. Section \ref{exp} discusses the experiments we run to validate the usefulness of the generated fake reviews in training a detection model. And we draw our final conclusions in section \ref{conclusion}.
 
 
 \section{Background}
 \label{bg}
-There is no shortage of research tackling the problem of fake review detection. A recent survey \cite{Mohawesh2021} does a great job laying out the landscape of the various techniques and data sets used for fake review detection.
+There is no shortage of research tackling the problem of fake review detection. A recent survey~\cite{Mohawesh2021} does a great job laying out the landscape of the various techniques and data sets used for fake review detection.
 
-According to this survey, all large datasets ($>$20k reviews) from Yelp \cite{rayana2015collective} contain less than $15\%$ actual fake reviews. There are a few other widely used public datasets crawled from TripAdvisor, but they are of much smaller scale, with the fake review training set generated via a manual process from Amazon Mechanical Turk.
+According to this survey, all large datasets ($>$20k reviews) from Yelp~\cite{rayana2015collective} contain less than $15\%$ actual fake reviews. There are a few other widely used public datasets crawled from TripAdvisor, but they are of much smaller scale, with the fake review training set generated via a manual process from Amazon Mechanical Turk.
 
-The only balanced dataset of moderate volume is crawled from Yelp by Barbado et. al. \cite{barbado2019framework}, however it has not been widely adopted in the research community as a benchmark for detecting fake reviews.
+The only balanced dataset of moderate volume is crawled from Yelp by Barbado et. al.~\cite{barbado2019framework}, however it has not been widely adopted in the research community as a benchmark for detecting fake reviews.
 
-Given this state of the related work, and inspired by Stanton et. al. \cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) of on-line Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
+Given this state of the related work, and inspired by Stanton et. al.~\cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) for on-line Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
 
-With sufficient representativeness, we believe the generated fake reviews can serve as additional training examples that helps with the detection model to distinguish between genuine reviews and fake ones -- "Happy families are all alike; every unhappy family is unhappy in its own way."
+With sufficient representativeness, we believe the generated fake reviews can serve as additional training examples that can help with the detection model to distinguish between genuine reviews and fake ones. To paraphrase Tolstoy --  genuine reviews are all alike; every fake review is fake in its own way.
 
-
-WIP:
-
-- Benchmark control group paper \cite{Tang2020}
-
-
-- Data description \cite{wang2017handling}
-
-- GAN Paper \cite{stanton2019gans}
-
-- Original data comes from \cite{mukherjee2013fake} \cite{mukherjee2013yelp}
 
 
 \section{Methods}
@@ -120,50 +111,144 @@ WIP:
 
 Methods
 
-\section{Results \& Discussion}
-\label{results}
+\section{Experiment \& Discussion}
+\label{exp}
 
-Results and Discussion
+\subsection{Experimental Setup}
+For our experiments, we use the publicly available data set originally obtained by \cite{mukherjee2013fake} and \cite{mukherjee2013yelp}.
+This data set, containing 5858 reviews for hotels and 67019 reviews for restaurants on Yelp, is also used by a number of prior research papers for benchmarking, notably~\cite{wang2017handling} and~\cite{Tang2020}.
+ A more detailed statistics of the raw data set is in Table \ref{original-data}. As mentioned above, it is indeed highly imbalanced with a much smaller number of fake reviews.
+
+\begin{table}[h]
+\normalsize
+\caption{Summary of Experimental Data}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Subject & Hotels & Restaurants \\ \hline
+Total \# Reviews & 5858 & 67019 \\ \hline
+Total \# Genuine Reviews & 5078 & 58716 \\ \hline
+Total \# Fake Reviews & 780 &  8303 \\ \hline
+\% Fake Reviews & 13.3\% & 12.4\%  \\ 
+\hline
+\end{tabular}
+\label{original-data}
+
+\end{table}
+
+To validate our hypothesis on the usefulness of the generated fake reviews, we set up a 2-stage experiment.
+
+Firstly, we use the methods laid out in section \ref{methods} to generate fake reviews for both hotels and restaurants. Secondly, we add the generated fake reviews to the training data to obtain a balanced training set, then run a number of classification models on the mixed training set and compare it against our benchmark results.
+
+We construct the data sets in the following ways to be comparable with the prior research papers~\cite{wang2017handling}, \cite{Tang2020}.
+
+For a balanced test set:
+\begin{itemize}
+\setlength\itemsep{0em}
+\item we first limit the pool of reviews to the first review per reviewer after 2012-01-01
+\item we take all the fake reviews (because there are fewer)
+\item we sample the same number of reviews from the genuine reviews
+\item this gives us a balanced, non-duplicated test set
+\end{itemize}
+
+For a balanced training set:
+\begin{itemize}
+\setlength\itemsep{0em}
+\item we first limit the pool of reviews to be the ones prior to 2012-01-01
+\item we take all the actual fake reviews
+\item we include all generated fake reviews
+\item we sample the same number of reviews from the genuine reviews
+\item this gives us a balanced, non-duplicated training set
+\end{itemize}
+
+
+\begin{table}[h]
+\normalsize
+\caption{Summary of Training/Test Data}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Subject & Hotels & Restaurants \\ \hline
+Training set size & 5070 &  \\ \hline
+\# Genuine Reviews & 2535  &  \\ \hline
+\# Actual Fake Reviews & 561  &  \\ \hline
+\# Generated Reviews & 1974 &  \\ \hline
+\% Fake Reviews in training set & 50\% &  \\ \hline
+Test set size & 432 &  \\ \hline
+\% Fake Reviews in test set & 50\% &  \\ 
+\hline
+\end{tabular}
+\label{trainining-data}
+
+\end{table}
+
+\subsection{Models}
+We established a number of models all based on Neural Networks to compare our results with the benchmark.
+
+\textbf{Model 1}: Our baseline model with GloVe embedding and 1 layer of LSTM.
+
+\textbf{Model 2}: Our main model with GloVe embedding, 1 layer of Bidirectional LSTM, and a few more dense layers.
+
+\textbf{Model 3}: A BERT based model.
+
+\textbf{Model 4}: Same as Model 2 except using ELMo embedding instead of GloVe.
+
+
+For each model, we'll be training on 4 different training sets for comparison:
+\begin{itemize}
+\setlength\itemsep{0em}
+\item \textbf{Set 1}: raw, imbalanced training set
+\item \textbf{Set 2}: balanced training set by under-sampling genuine reviews
+\item \textbf{Set 3}: balanced training set by over-sampling fake reviews
+\item \textbf{Set 4}: balanced training set by including generated fake reviews per Table \ref{trainining-data}
+\end{itemize}
+
+\subsection{Results}
+We report the best results of each model on each training set after hyper-parameter tuning via grid search. We will also report state-of-the-art classification benchmark from~\cite{Tang2020} using generated behavior features.
+
 
 \section{Conclusion}
 \label{conclusion}
+%
+%Example table
+%\begin{table}[h]
+%\normalsize
+%\caption{Summary of Experimental Results}
+%\centering
+%\begin{tabular}{|c|c|c|c|c|c|}
+%\hline
+%System & $n$ &  $\gamma$ & Samples & mean & max \\ \hline
+%\multirow{3}{*}{A} & \multirow{3}{*}{21} & 0.2 & 24236 (11\%) & 0.083 & 0.084\\
+% && 0.15 & 43307 (20\%) & 0.081 & 0.081\\
+%  && 0.1 & 97440 (44\%)& 0.074 & 0.074\\ \hline
+%\multirow{3}{*}{B} & \multirow{3}{*}{23}  & 0.2 & 26332 (2.2\%) & 0.035 & 0.036\\
+%&& 0.15 & 46812 (4.0\%)& 0.026 & 0.026\\
+%&& 0.1 & 105326 (8.9\%)& 0.0068& 0.0069\\ \hline
+%\multirow{3}{*}{C} & \multirow{3}{*}{26}&0.2& 29289 (2.2\%) & 0.084 & 0.085\\
+%& & 0.15 & 52070 (3.9\%)& 0.084 & 0.084\\
+% &  & 0.1 & 117156 (8.8\%)& 0.080 & 0.082\\ \hline
+% \multirow{3}{*}{D} & \multirow{3}{*}{20} & 0.2 & 23375 (2.2\%)& 0.074 & 0.080\\
+%&  & 0.15 & 41555 (4.0\%)& 0.034 & 0.037\\
+%&  & 0.1 & 93497 (8.9\%)& 0.024 & 0.024\\
+%
+%\hline
+%\end{tabular}
+%\label{expone}
+%
+%\vspace{1em}
+%
+%\begin{center}
+%$n$ = Number of features of system.\\
+%$\gamma$ = User specified maximum error.\\
+%Samples = Number \& proportion of samples used.\\
+%mean = Average actual error from the 10 runs.\\
+%max = Maximum actual error from the 10 runs.
+%\end{center}
+%
+%\end{table}
 
-Example table
-\begin{table}[h]
-\normalsize
-\caption{Summary of Experimental Results}
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-System & $n$ &  $\gamma$ & Samples & mean & max \\ \hline
-\multirow{3}{*}{A} & \multirow{3}{*}{21} & 0.2 & 24236 (11\%) & 0.083 & 0.084\\
- && 0.15 & 43307 (20\%) & 0.081 & 0.081\\
-  && 0.1 & 97440 (44\%)& 0.074 & 0.074\\ \hline
-\multirow{3}{*}{B} & \multirow{3}{*}{23}  & 0.2 & 26332 (2.2\%) & 0.035 & 0.036\\
-&& 0.15 & 46812 (4.0\%)& 0.026 & 0.026\\
-&& 0.1 & 105326 (8.9\%)& 0.0068& 0.0069\\ \hline
-\multirow{3}{*}{C} & \multirow{3}{*}{26}&0.2& 29289 (2.2\%) & 0.084 & 0.085\\
-& & 0.15 & 52070 (3.9\%)& 0.084 & 0.084\\
- &  & 0.1 & 117156 (8.8\%)& 0.080 & 0.082\\ \hline
- \multirow{3}{*}{D} & \multirow{3}{*}{20} & 0.2 & 23375 (2.2\%)& 0.074 & 0.080\\
-&  & 0.15 & 41555 (4.0\%)& 0.034 & 0.037\\
-&  & 0.1 & 93497 (8.9\%)& 0.024 & 0.024\\
 
-\hline
-\end{tabular}
-\label{expone}
 
-\vspace{1em}
-
-\begin{center}
-$n$ = Number of features of system.\\
-$\gamma$ = User specified maximum error.\\
-Samples = Number \& proportion of samples used.\\
-mean = Average actual error from the 10 runs.\\
-max = Maximum actual error from the 10 runs.
-\end{center}
-
-\end{table}
 \bibliographystyle{plain}
 \balance
 \nocite{*}
