@@ -102,6 +102,13 @@
   publisher = {Elsevier},
 }
 
+@Electronic{gpt2guide,
+  author = {Jason Wu},
+  title  = {How to Build an AI Text Generator: Text Generation with a GPT-2 Model},
+  url    = {https://code.oursky.com/ai-text-generator-text-generation-with-a-gpt2-model},
+  year   = {2020},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: grouping:

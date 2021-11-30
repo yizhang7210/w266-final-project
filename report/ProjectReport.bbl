@@ -61,6 +61,11 @@ Xuepeng Wang, Kang Liu, and Jun Zhao.
 \newblock In {\em Proceedings of the 55th Annual Meeting of the Association for
   Computational Linguistics (Volume 1: Long Papers)}, pages 366--376, 2017.
 
+\bibitem{gpt2guide}
+Jason Wu.
+\newblock How to build an ai text generator: Text generation with a gpt-2
+  model, 2020.
+
 \bibitem{yuan2019learning}
 Chunyuan Yuan, Wei Zhou, Qianwen Ma, Shangwen Lv, Jizhong Han, and Songlin Hu.
 \newblock Learning review representations from user and product level
