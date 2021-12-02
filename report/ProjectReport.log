@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  30 NOV 2021 22:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  1 DEC 2021 20:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -234,7 +234,7 @@ Overfull \hbox (9.76955pt too wide) in paragraph at lines 240--254
  []
 
 [3] (./ProjectReport.bbl
-Underfull \hbox (badness 4229) in paragraph at lines 41--44
+Underfull \hbox (badness 4229) in paragraph at lines 44--47
 []\OT1/ptm/m/n/9 Gray Stan-ton and Athi-rai A Iris-s-ap-pane.  Gans for
  []
 
@@ -252,10 +252,10 @@ Before submitting the final camera ready copy, remember to:
 
 [4] (./ProjectReport.aux) ) 
 Here is how much of TeX's memory you used:
- 2050 strings out of 480608
- 32047 string characters out of 5903631
- 287120 words of memory out of 5000000
- 17947 multiletter control sequences out of 15000+600000
+ 2051 strings out of 480608
+ 32060 string characters out of 5903631
+ 297120 words of memory out of 5000000
+ 17948 multiletter control sequences out of 15000+600000
  571167 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  30i,8n,27p,681b,214s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -267,7 +267,7 @@ y10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local
 /texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ProjectReport.pdf (4 pages, 96008 bytes).
+Output written on ProjectReport.pdf (4 pages, 96039 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream

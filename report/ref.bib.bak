@@ -109,6 +109,11 @@
   year   = {2020},
 }
 
+@Electronic{huggingface,
+  title = {huggingface/transformers},
+  url   = {https://github.com/huggingface/transformers/tree/27c1b656cca75efa0cc414d3bf4e6aacf24829de/examples},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: grouping:
