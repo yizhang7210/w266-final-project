@@ -62,7 +62,7 @@
 
 %=========================yz7210==================================================%
 
-\title{Tackling skewed data in on-line fake review detection}
+\title{Tackling skewed data in online fake review detection}
 \date{\today}
 \author{\IEEEauthorblockN{Satheesh Joseph}
 \IEEEauthorblockA{satheeshrishi@berkeley.edu}
@@ -80,18 +80,18 @@
 
 
 \begin{abstract}
-The increasing need and value of the digital text and the trustworthiness behind it inspired our imagination to handle a niche problem within the space of opinion spam analysis. Recently many researches have been conducted to increase the detection accuracy. To the best of our knowledge, an important issue that has been less studied is to tackle heavily skewed data in on-line fake review detection. In this paper, we study a methodology to tackle the imbalanced data issue and the accuracy effects on different state-of-the-art models. For this research, we use publicly available Yelp review data for hotels and restaurants for our experiments.
+The increasing need and value of the digital text and the trustworthiness behind it inspired our imagination to handle a niche problem within the space of opinion spam analysis. Recently many researches have been conducted to increase the detection accuracy. To the best of our knowledge, an important issue that has been less studied is to tackle heavily skewed data in online fake review detection. In this paper, we study a methodology to tackle the imbalanced data issue and the accuracy effects on different state-of-the-art models. For this research, we use publicly available Yelp review data for hotels and restaurants for our experiments.
 \end{abstract}
 
 \section{Introduction}
 \label{intro}
-On-line fake review detection is a relatively well studied subject, especially in recent years, given its outsized impact on consumers engaging in e-commerce activities online. Positive reviews bring a meaningful increase in sales volume to the products~\cite{ho2013effects}, and vice versa for negative reviews.
+Online fake review detection is a relatively well-studied subject, especially in recent years, given its outsized impact on consumers engaging in e-commerce activities online. Positive reviews bring a meaningful increase in sales volume to the products~\cite{ho2013effects}, and vice versa for negative reviews.
 
-As a result, there has been an increase in opinion spamming activities, and detecting fake reviews has become an essential requirement for on-line marketplaces to maintain the integrity and fairness of their platform.
+As a result, there has been an increase in opinion spamming activities, and detecting fake reviews has become an essential requirement for online marketplaces to maintain the integrity and fairness of their platform.
 
-However, there has been one persisting challenge~\cite{stanton2019gans, Tang2020, wang2020fake, yuan2019learning} in this area of research -- the lack of substantial body of actually proven fake reviews, directly leading to significantly imbalanced datasets.
+However, there has been one persisting challenge~\cite{stanton2019gans, Tang2020, wang2020fake, yuan2019learning} in this area of research -- the lack of a substantial body of actually proven fake reviews, directly leading to significantly imbalanced datasets.
 
-Our work aims to tackle this problem of data imbalance by borrowing ideas from Generative Adversarial Network (GAN). Our \textbf{hypothesis} is that it's possible to make up the data imbalance by generating fake reviews from a \textbf{language model} trained and/or fine-tuned on actual fake reviews. We will look to validate this approach by then training a review detection model on a balanced dataset that includes the generated fake reviews, and achieving comparable results to state-of-the-art research~\cite{Tang2020}.
+Our work aims to tackle this problem of data imbalance by borrowing ideas from the Generative Adversarial Network (GAN). Our \textbf{hypothesis} is that it's possible to make up the data imbalance by generating fake reviews from a \textbf{language model} trained and/or fine-tuned on actual fake reviews. We will look to validate this approach by then training a review detection model on a balanced dataset that includes the generated fake reviews and achieving comparable results to state-of-the-art research~\cite{Tang2020}.
 
 Section \ref{bg} provides the background on the existing research in fake review detection. Section \ref{methods} lays out our methods of constructing the fake review generator. Section \ref{exp} discusses the experiments we run to validate the usefulness of the generated fake reviews in training a detection model. And we draw our final conclusions in section \ref{conclusion}.
 
@@ -100,11 +100,11 @@ Section \ref{bg} provides the background on the existing research in fake review
 \label{bg}
 There is no shortage of research tackling the problem of fake review detection. A recent survey~\cite{Mohawesh2021} does a great job laying out the landscape of the various techniques and data sets used for fake review detection.
 
-However, most of the publicly available data sets are very skewed with many much real review examples than fake ones. According to this survey, all large datasets ($>$20k reviews) from Yelp~\cite{rayana2015collective} contain less than $15\%$ actual fake reviews. There are a few other widely used public datasets crawled from TripAdvisor, but they are of much smaller scale, with the fake review training set generated via a manual process from Amazon Mechanical Turk.
+However, most of the publicly available data sets are very skewed with many much real review examples than fake ones. According to this survey, all large datasets ($>$20k reviews) from Yelp~\cite{rayana2015collective} contain less than $15\%$ actual fake reviews. There are a few other widely used public datasets crawled from TripAdvisor, but they are of a much smaller scale, with the fake review training set generated via a manual process from Amazon Mechanical Turk.
 
 The only balanced dataset of moderate volume is crawled from Yelp by Barbado et. al.~\cite{barbado2019framework}, however it has not been widely adopted in the research community as a benchmark for detecting fake reviews.
 
-This lack of trusted labeled data can put a significant limit on the performance of models that try to detect fake reviews. Moreover the unbalanced datasets tend to encourage the model to produce biased predictions. Given this state of the related work, and inspired by Stanton et. al.~\cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) for on-line Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
+This lack of trusted labeled data can put a significant limit on the performance of models that try to detect fake reviews. Moreover, the unbalanced datasets tend to encourage the model to produce biased predictions. Given this state of the related work, and inspired by Stanton et. al.~\cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) for online Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
 
 With sufficient representativeness, we believe the generated fake reviews can serve as additional training examples that can help with the detection model to distinguish between genuine reviews and fake ones. To paraphrase Tolstoy --  genuine reviews are all alike; every fake review is fake in its own way.
 
@@ -117,15 +117,15 @@ The general structure of a Generative Adversarial Network consists of a \textit{
 
 For the \textit{generative} network, we here use the well-established, pre-trained GPT-2 language model.
 
-GPT-2 was pre-trained on web scraped industrial-scale corpus, it was trained with a batch size of 512, well-defined sentence length, volcabulary seize of 50,000, and can be used for various NLP tasks including text generation. It is a statistical tool to generate next words in sequence based on preceding words, at every stage, it will take the previously generated data as additional input when generating next output. GPT-2 has outperformed other language models when it comes to generating text based on small input contents like hotel/restaurant reviews. GPT-2 has the ability to adapt to context of text, so it can generate realistic and coherent output. 
+GPT-2 was pre-trained on web scraped industrial-scale corpus, it was trained with a batch size of 512, well-defined sentence length, vocabulary size of 50,000, and can be used for various NLP tasks including text generation. It is a statistical tool to generate the next words in sequence based on preceding words, at every stage, it will take the previously generated data as additional input when generating the next output. GPT-2 has outperformed other language models when it comes to generating text based on small input contents like hotel/restaurant reviews. GPT-2 has the ability to adapt to the context of the text, so it can generate realistic and coherent output. 
 
-To generate domain specific fake Yelp reviews, we fined-tuned the pre-trained GPT-2 model by adding layers on top and trained with our raw data set. GPT-2 text generation pipeline predicts words that will follow a specified text prompt, so we gave it a simple prompt such as ``the hotel is", or ``the restaurant is".
+To generate domain-specific fake Yelp reviews, we fined-tuned the pre-trained GPT-2 model by adding layers on top and trained with our raw data set. GPT-2 text generation pipeline predicts words that will follow a specified text prompt, so we gave it a simple prompt such as ``the hotel is", or ``the restaurant is".
 
-However, this led to low quality generated text that was very repetitive at the end. Furthermore, the generated text were frequently not full sentences. With multiple trial and error, we eventually made a few improvements that led to higher quality generated fake reviews.
+However, this led to low-quality generated text that was very repetitive at the end. Furthermore, the generated text was frequently not full sentences. With multiple trials and errors, we eventually made a few improvements that led to higher quality generated fake reviews.
 \begin{itemize}
-\item We sampled some of the original actual fake reviews as the prompt supplied to GPT-2 for text generation, instead of the short static prompt. This is to give GPT-2 more context to generate longer and more realistic looking reviews.
+\item We sampled some of the original actual fake reviews as the prompt supplied to GPT-2 for text generation, instead of the short static prompt. This is to give GPT-2 more context to generate longer and more realistic-looking reviews.
 
-\item We trained a simple Neural Network using ELMo embedding with LSTM and 2 dense layers on the original data set as the \textit{discriminative} network. Even though this Network itself has not performed well in distinguishing genuine and fake reviews, it does do a good job distinguishing coherent, relevant reviews about hotels/restaurants and irrelevant sentences, making it a good candidate for the discriminative network in the GAN. And finally, we only picked reviews that sufficiently confused this network (with predicted probability of more than 80\%) to be included in the final generated fake review set.
+\item We trained a simple Neural Network using ELMo embedding with LSTM and 2 dense layers on the original data set as the \textit{discriminative} network. Even though this Network itself has not performed well in distinguishing genuine and fake reviews, it does do a good job distinguishing coherent, relevant reviews about hotels/restaurants and irrelevant sentences, making it a good candidate for the discriminative network in the GAN. And finally, we only picked reviews that sufficiently confused this network (with a predicted probability of more than 80\%) to be included in the final generated fake review set.
 \end{itemize}
 
 \section{Experiment \& Discussion}
@@ -206,7 +206,7 @@ We established a number of models all based on Neural Networks to compare our re
 
 \textbf{Model 2}: Our main model with GloVe embedding, 1 layer of Bidirectional LSTM, and 3 dense layers.
 
-\textbf{Model 3}: A BERT based model.
+\textbf{Model 3}: A BERT-based model.
 
 For each model, we'll be training on 4 different training sets for comparison:
 
@@ -219,15 +219,15 @@ For each model, we'll be training on 4 different training sets for comparison:
  \textbf{Set 4}: balanced training set by including generated fake reviews per Table \ref{trainining-data}
 
 \subsection{Results}
-We report the best results of each of our models trained on each training set listed above after hyper-parameter tuning via grid search. We will also report the results of a few state-of-the-art classification algorithms from the benchmark research~\cite{Tang2020}.
+We report the best results of each of our models trained on each training set listed above after hyperparameter tuning via grid search. We will also report the results of a few state-of-the-art classification algorithms from the benchmark research~\cite{Tang2020}.
 
 Their brief descriptions are as follows:
 
 \textbf{LF}: uses linguistic features from the review content only, by extracting bigrams from the reviews data.
 
-\textbf{CNN}: uses the same bigram features but trained using a Convolutional Neural Network.
+\textbf{CNN}: uses the same bigram features but is trained using a Convolutional Neural Network.
 
-\textbf{LF+BF}: is a concatenation of linguistic as well as \textit{behavioral} features from the the review, including its length, rating, and other reviews by the same reviewer.
+\textbf{LF+BF}: is a concatenation of linguistic as well as \textit{behavioral} features from the review, including its length, rating, and other reviews by the same reviewer.
 
 \textbf{bfGAN}: is the state-of-the-art algorithm using a number of generated behavioral features as well as the review content.
 
@@ -280,9 +280,9 @@ bfGAN\cite{Tang2020}& \multicolumn{4}{c|}{0.76/0.75} \\
 WIP:
 - Model size matters, with the data set, we can't afford models that are too large, they can easily overfit
 
-- Non-repetitive, balanced data set matters, Training set 1 and 3 performs notably worse than training set 2 and 4
+- Non-repetitive, balanced data set matters, Training set 1 and 3 perform notably worse than the training set 2 and 4
 
-- Non-linguistic features matter. Our model is doing better than pure bigram based model, and is comparable to CNN and LF+BF based models, but if we take into account other behavioral features, it should continue to improve.
+- Non-linguistic features matter. Our model is doing better than the pure bigram-based model and is comparable to CNN and LF+BF-based models, but if we take into account other behavioral features, it should continue to improve.
 
 
 \section{Conclusion}
