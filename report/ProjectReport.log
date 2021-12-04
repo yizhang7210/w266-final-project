@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 DEC 2021 09:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 DEC 2021 12:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -229,16 +229,36 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ] [2]
-Overfull \hbox (9.76955pt too wide) in paragraph at lines 240--254
+Overfull \hbox (4.55939pt too wide) in paragraph at lines 240--254
  [][] 
  []
 
 [3]
-Overfull \hbox (9.76955pt too wide) in paragraph at lines 260--273
+Overfull \hbox (7.33928pt too wide) in paragraph at lines 260--273
  [][] 
  []
 
+
+Underfull \hbox (badness 2772) in paragraph at lines 283--284
+[]\OT1/ptm/m/n/11 Non-repeated, bal-anced train-ing set mat-ters.
+ []
+
+
+Underfull \hbox (badness 3229) in paragraph at lines 291--292
+[]\OT1/ptm/m/n/11 Model tun-ing mat-ters. With dif-fer-ent data
+ []
+
+
+Underfull \hbox (badness 2173) in paragraph at lines 291--292
+\OT1/ptm/m/n/11 fer-ently. With the large num-ber of hyper-
+ []
+
 (./ProjectReport.bbl
+
+Package balance Warning: You have called \balance in second column
+(balance)                Columns might not be balanced.
+
+[4]
 Underfull \hbox (badness 4229) in paragraph at lines 44--47
 []\OT1/ptm/m/n/9 Gray Stan-ton and Athi-rai A Iris-s-ap-pane.  Gans for
  []
@@ -255,15 +275,15 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4] (./ProjectReport.aux) ) 
+[5] (./ProjectReport.aux) ) 
 Here is how much of TeX's memory you used:
  2051 strings out of 480608
  32060 string characters out of 5903631
- 297119 words of memory out of 5000000
+ 282119 words of memory out of 5000000
  17948 multiletter control sequences out of 15000+600000
  571167 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,8n,27p,695b,214s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,8n,27p,695b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/
 base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
@@ -272,10 +292,10 @@ y10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local
 /texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ProjectReport.pdf (4 pages, 95997 bytes).
+Output written on ProjectReport.pdf (5 pages, 99025 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 49 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -186,13 +186,13 @@ For a balanced training set:
 \begin{tabular}{|c|c|c|}
 \hline
 Subject & Hotels & Restaurants \\ \hline
-Training set size & 5070 &  \\ \hline
-\# Genuine Reviews & 2535  &  \\ \hline
-\# Actual Fake Reviews & 561  &  \\ \hline
-\# Generated Reviews & 1974 &  \\ \hline
-\% Fake Reviews in training set & 50\% &  \\ \hline
-Test set size & 432 &  \\ \hline
-\% Fake Reviews in test set & 50\% &  \\ 
+Training set size & 5070 & 56115 \\ \hline
+\# Genuine Reviews & 2535  & 49189 \\ \hline
+\# Actual Fake Reviews & 561  &  6926\\ \hline
+\# Generated Reviews & 1974 & 42263 \\ \hline
+\% Fake Reviews in training set & 50\% & 50\%  \\ \hline
+Test set size & 432 & 2474 \\ \hline
+\% Fake Reviews in test set & 50\% & 50\% \\ 
 \hline
 \end{tabular}
 \label{trainining-data}
@@ -208,7 +208,7 @@ We established a number of models all based on Neural Networks to compare our re
 
 \textbf{Model 3}: A BERT-based model.
 
-For each model, we'll be training on 4 different training sets for comparison:
+For each model, we'll be training on 4 different training sets for comparison. Each model has a different mix of genuine v.s. fake v.s. generated fake reviews, so we can test the effectiveness of generated fake reviews.
 
  \textbf{Set 1}: raw, imbalanced training set
  
@@ -229,7 +229,7 @@ Their brief descriptions are as follows:
 
 \textbf{LF+BF}: is a concatenation of linguistic as well as \textit{behavioral} features from the review, including its length, rating, and other reviews by the same reviewer.
 
-\textbf{bfGAN}: is the state-of-the-art algorithm using a number of generated behavioral features as well as the review content.
+\textbf{bfGAN}: is the state-of-the-art algorithm from~\cite{Tang2020} using GAN generated behavioral features (BF) as well as the review content.
 
 We've selected classification \textit{accuracy} as well as \textit{f1-score} as the reporting metrics to be compatible with prior research. A summary of them all the experimental results is presented in Table \ref{exp-hotels} for the Hotels data set and Table \ref{exp-restaurants} for the restaurant data set.
 
@@ -243,10 +243,10 @@ We've selected classification \textit{accuracy} as well as \textit{f1-score} as 
  
 Model 1 & 0.51/0.35 & 0.61/0.61 & 0.58/0.56 & 0.59/0.59 \\ \hline
 Model 2 & 0.56/0.62 & 0.60/0.61 & 0.57/0.62 & 0.59/0.60 \\ \hline
-Model 3 & 0.5/0.34 & 0.57/0.57 & 0.53/0.54 & 0.52/0.56 \\ \hline
+Model 3* & 0.5/0.34 & 0.57/0.57 & 0.53/0.54 & 0.52/0.56 \\ \hline
 LF~\cite{Tang2020} & \multicolumn{4}{c|}{0.56/0.62} \\ \hline
 CNN~\cite{Tang2020} & \multicolumn{4}{c|}{0.59/0.56} \\ \hline
-LF + BF~\cite{Tang2020} & \multicolumn{4}{c|}{0.61/0.58} \\ \hline
+LF+BF~\cite{Tang2020} & \multicolumn{4}{c|}{0.61/0.58} \\ \hline
 bfGAN~\cite{Tang2020} & \multicolumn{4}{c|}{0.83/0.83} \\
 \hline
 \end{tabular}
@@ -262,69 +262,43 @@ bfGAN~\cite{Tang2020} & \multicolumn{4}{c|}{0.83/0.83} \\
  accuracy/f1 & Set 1 & Set 2 & Set 3 & Set 4 \\ \hline
 Model 1 & 0.57/0.53 & 0.63/0.62 & 0.62/0.61 & 0.60/0.60 \\ \hline
 Model 2 & 0.57/0.50 & 0.63/0.62 & 0.62/0.61 & 0.59/0.58 \\ \hline
-Model 3 & 0.5/0.33 & 0.52/0.46 & - & - \\ \hline
+Model 3* & 0.5/0.33 & 0.52/0.46 & - & 0.56/0/.56 \\ \hline
 LF~\cite{Tang2020} & \multicolumn{4}{c|}{0.56/0.65} \\ \hline
 CNN~\cite{Tang2020} & \multicolumn{4}{c|}{0.57/0.58} \\ \hline
-LF + BF~\cite{Tang2020} & \multicolumn{4}{c|}{0.59/0.60} \\ \hline
+LF+BF~\cite{Tang2020} & \multicolumn{4}{c|}{0.59/0.60} \\ \hline
 bfGAN\cite{Tang2020}& \multicolumn{4}{c|}{0.76/0.75} \\
 \hline
 \end{tabular}
 \label{exp-restaurants}
-
 \end{table}
 
+\vspace{-1.5em}
+
+{\footnotesize * With very limited hyper-parameter tuning.}
 
 
+\subsection{Discussion \& Future Work}
+Synthesizing the results, we can see a few trends:
+\begin{itemize}
+\item Non-repeated, balanced training set matters. Across the models, the test accuracy is generally higher when trained on Set 2 or 4 compared to trained on Set 1 (skewed) or Set 3 (over-sampled).
+\item Non linguistic features matter. Even though our models mostly out-performed purely linguistically based baselines (i.e. LF and CNN) and even sometimes LF+BF (in the case of the restaurant data set), more sophisticated use of behavioral features seem to be able to boot the model accuracy much further.
+\item Generated fake review can be useful, but has not proved to be a significant difference maker. Comparing models trained on Set 2 versus Set 4, even though the latter did not perform better than the former as we had hoped, it held up well and produced accuracy and f1 scores that are mostly on par.
+\end{itemize}
 
-\subsection{Discussion}
-WIP:
-- Model size matters, with the data set, we can't afford models that are too large, they can easily overfit
-
-- Non-repetitive, balanced data set matters, Training set 1 and 3 perform notably worse than the training set 2 and 4
-
-- Non-linguistic features matter. Our model is doing better than the pure bigram-based model and is comparable to CNN and LF+BF-based models, but if we take into account other behavioral features, it should continue to improve.
+Going through this exercise, we also took away a few learnings for future improvement.
+\begin{enumerate}
+\item Fidelity of the generated review really matters. It's not obvious looking at the results, but we've made multiple attempts and have gone through multiple iterations to optimize for the quality and fidelity of the generated fake reviews, and with each iteration, the ultimate accuracy and f1 scores improve. Unfortunately we eventually ran out of time, but we believe focusing more on the fake review generation in the future would be a fruitful pursuit.
+\item Model tuning matters. With different data set sizes, different sized models and hyper-parameter combinations can perform very differently. With the large number of hyper-parameters (e.g. number of layers, units, training epochs, text vectorizers, sequence lengths etc.), as well as the long training time of BERT based models, we came up short on time in getting the best out of them. If we had more time in the future, we believe the results still have much room for improvement, especially for the BERT based Model 3.
+\end{enumerate}
 
 
 \section{Conclusion}
 \label{conclusion}
-%
-%Example table
-%\begin{table}[h]
-%\normalsize
-%\caption{Summary of Experimental Results}
-%\centering
-%\begin{tabular}{|c|c|c|c|c|c|}
-%\hline
-%System & $n$ &  $\gamma$ & Samples & mean & max \\ \hline
-%\multirow{3}{*}{A} & \multirow{3}{*}{21} & 0.2 & 24236 (11\%) & 0.083 & 0.084\\
-% && 0.15 & 43307 (20\%) & 0.081 & 0.081\\
-%  && 0.1 & 97440 (44\%)& 0.074 & 0.074\\ \hline
-%\multirow{3}{*}{B} & \multirow{3}{*}{23}  & 0.2 & 26332 (2.2\%) & 0.035 & 0.036\\
-%&& 0.15 & 46812 (4.0\%)& 0.026 & 0.026\\
-%&& 0.1 & 105326 (8.9\%)& 0.0068& 0.0069\\ \hline
-%\multirow{3}{*}{C} & \multirow{3}{*}{26}&0.2& 29289 (2.2\%) & 0.084 & 0.085\\
-%& & 0.15 & 52070 (3.9\%)& 0.084 & 0.084\\
-% &  & 0.1 & 117156 (8.8\%)& 0.080 & 0.082\\ \hline
-% \multirow{3}{*}{D} & \multirow{3}{*}{20} & 0.2 & 23375 (2.2\%)& 0.074 & 0.080\\
-%&  & 0.15 & 41555 (4.0\%)& 0.034 & 0.037\\
-%&  & 0.1 & 93497 (8.9\%)& 0.024 & 0.024\\
-%
-%\hline
-%\end{tabular}
-%\label{expone}
-%
-%\vspace{1em}
-%
-%\begin{center}
-%$n$ = Number of features of system.\\
-%$\gamma$ = User specified maximum error.\\
-%Samples = Number \& proportion of samples used.\\
-%mean = Average actual error from the 10 runs.\\
-%max = Maximum actual error from the 10 runs.
-%\end{center}
-%
-%\end{table}
+Through our literature review, we identified a common challenge of skewed training data in the domain of online fake review detection. In this research, we've attempted to tackle it by using a Generative Adversarial Network to generated high fidelity fake reviews based on the existing fake review data to complement it for model training.
 
+With the experiments we've conducted, it seems that training on generated fake review can indeed improve the model accuracy compared to a skewed or an over-sampled training set, especially on smaller raw data sets. Whether it can out-performed under-sampled training set still requires further work.
+
+Furthermore, we've found the network architecture of Bidirectional LSTM with a few dense layers reasonably effective in this particular natural language task.
 
 
 \bibliographystyle{plain}
