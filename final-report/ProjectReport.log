@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 DEC 2021 12:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 DEC 2021 13:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -234,7 +234,7 @@ Overfull \hbox (4.55939pt too wide) in paragraph at lines 240--254
  []
 
 [3]
-Overfull \hbox (7.33928pt too wide) in paragraph at lines 260--273
+Overfull \hbox (4.55939pt too wide) in paragraph at lines 260--273
  [][] 
  []
 
@@ -292,7 +292,7 @@ y10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local
 /texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ProjectReport.pdf (5 pages, 99025 bytes).
+Output written on ProjectReport.pdf (5 pages, 98980 bytes).
 PDF statistics:
  49 PDF objects out of 1000 (max. 8388607)
  34 compressed objects within 1 object stream
