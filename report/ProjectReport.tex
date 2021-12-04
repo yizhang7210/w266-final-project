@@ -104,7 +104,7 @@ However, most of the publicly available data sets are very skewed with many much
 
 The only balanced dataset of moderate volume is crawled from Yelp by Barbado et. al.~\cite{barbado2019framework}, however it has not been widely adopted in the research community as a benchmark for detecting fake reviews.
 
-This lack of trusted labeled data can put a significant limit on the performance of models that try to detect fake reviews. Moreover, the unbalanced datasets tend to encourage the model to produce biased predictions. Given this state of the related work, and inspired by Stanton et. al.~\cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) for online Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
+This lack of trusted labeled data can apply a significant limit on the performance of models that try to detect fake reviews. Moreover, the unbalanced datasets tend to encourage the model to produce biased predictions. Given this state of the related work, and inspired by Stanton et. al.~\cite{stanton2019gans} who used GAN techniques to generate behavioral features (e.g. number of reviews, percentage of positive reviews) for online Yelp reviewers, we believe that similar techniques can be used to generate the reviews themselves.
 
 With sufficient representativeness, we believe the generated fake reviews can serve as additional training examples that can help with the detection model to distinguish between genuine reviews and fake ones. To paraphrase Tolstoy --  genuine reviews are all alike; every fake review is fake in its own way.
 
@@ -119,7 +119,7 @@ For the \textit{generative} network, we here use the well-established, pre-train
 
 GPT-2 was pre-trained on web scraped industrial-scale corpus, it was trained with a batch size of 512, well-defined sentence length, vocabulary size of 50,000, and can be used for various NLP tasks including text generation. It is a statistical tool to generate the next words in sequence based on preceding words, at every stage, it will take the previously generated data as additional input when generating the next output. GPT-2 has outperformed other language models when it comes to generating text based on small input contents like hotel/restaurant reviews. GPT-2 has the ability to adapt to the context of the text, so it can generate realistic and coherent output. 
 
-To generate domain-specific fake Yelp reviews, we fined-tuned the pre-trained GPT-2 model by adding layers on top and trained with our raw data set. GPT-2 text generation pipeline predicts words that will follow a specified text prompt, so we gave it a simple prompt such as ``the hotel is", or ``the restaurant is".
+To generate domain-specific fake Yelp reviews, we fined-tuned the pre-trained GPT-2 model by adding layers on top and training with our raw data set. GPT-2 text generation pipeline predicts words that will follow a specified text prompt, so we gave it a simple prompt such as ``the hotel is", or ``the restaurant is".
 
 However, this led to low-quality generated text that was very repetitive at the end. Furthermore, the generated text was frequently not full sentences. With multiple trials and errors, we eventually made a few improvements that led to higher quality generated fake reviews.
 \begin{itemize}
