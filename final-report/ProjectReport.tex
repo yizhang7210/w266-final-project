@@ -281,22 +281,22 @@ bfGAN\cite{Tang2020}& \multicolumn{4}{c|}{0.76/0.75} \\
 Synthesizing the results, we can see a few trends:
 \begin{itemize}
 \item Non-repeated, balanced training set matters. Across the models, the test accuracy is generally higher when trained on Set 2 or 4 compared to trained on Set 1 (skewed) or Set 3 (over-sampled).
-\item Non linguistic features matter. Even though our models mostly out-performed purely linguistically based baselines (i.e. LF and CNN) and even sometimes LF+BF (in the case of the restaurant data set), more sophisticated use of behavioral features seem to be able to boot the model accuracy much further.
-\item Generated fake review can be useful, but has not proved to be a significant difference maker. Comparing models trained on Set 2 versus Set 4, even though the latter did not perform better than the former as we had hoped, it held up well and produced accuracy and f1 scores that are mostly on par.
+\item Non-linguistic features matter. Even though our models mostly out-performed purely linguistically based baselines (i.e. LF and CNN) and even sometimes LF+BF (in the case of the restaurant data set), more sophisticated use of behavioral features seems to be able to boot the model accuracy much further.
+\item Generated fake review can be useful but has not proved to be a significant difference-maker. Comparing models trained on Set 2 versus Set 4, even though the latter did not perform better than the former as we had hoped, it held up well and produced accuracy and f1 scores that are mostly on par.
 \end{itemize}
 
 Going through this exercise, we also took away a few learnings for future improvement.
 \begin{enumerate}
-\item Fidelity of the generated review really matters. It's not obvious looking at the results, but we've made multiple attempts and have gone through multiple iterations to optimize for the quality and fidelity of the generated fake reviews, and with each iteration, the ultimate accuracy and f1 scores improve. Unfortunately we eventually ran out of time, but we believe focusing more on the fake review generation in the future would be a fruitful pursuit.
-\item Model tuning matters. With different data set sizes, different sized models and hyper-parameter combinations can perform very differently. With the large number of hyper-parameters (e.g. number of layers, units, training epochs, text vectorizers, sequence lengths etc.), as well as the long training time of BERT based models, we came up short on time in getting the best out of them. If we had more time in the future, we believe the results still have much room for improvement, especially for the BERT based Model 3.
+\item Fidelity of the generated review really matters. It's not obvious looking at the results, but we've made multiple attempts and have gone through multiple iterations to optimize for the quality and fidelity of the generated fake reviews, and with each iteration, the ultimate accuracy and f1 scores improve. Unfortunately, we eventually ran out of time, but we believe focusing more on the fake review generation in the future would be a fruitful pursuit.
+\item Model tuning matters. With different data set sizes, different sized models and hyper-parameter combinations can perform very differently. With the large number of hyper-parameters (e.g. number of layers, units, training epochs, text vectorizers, sequence lengths, etc.), as well as the long training time of BERT-based models, we came up short on time in getting the best out of them. If we had more time in the future, we believe the results still have much room for improvement, especially for the BERT-based Model 3.
 \end{enumerate}
 
 
 \section{Conclusion}
 \label{conclusion}
-Through our literature review, we identified a common challenge of skewed training data in the domain of online fake review detection. In this research, we've attempted to tackle it by using a Generative Adversarial Network to generated high fidelity fake reviews based on the existing fake review data to complement it for model training.
+Through our literature review, we identified a common challenge of skewed training data in the domain of online fake review detection. In this research, we've attempted to tackle it by using a Generative Adversarial Network to generate high fidelity fake reviews based on the existing fake review data to complement it for model training.
 
-With the experiments we've conducted, it seems that training on generated fake review can indeed improve the model accuracy compared to a skewed or an over-sampled training set, especially on smaller raw data sets. Whether it can out-performed under-sampled training set still requires further work.
+With the experiments we've conducted, it seems that training on generated fake reviews can indeed improve the model accuracy compared to a skewed or an over-sampled training set, especially on smaller raw data sets. Whether it can out-performed under-sampled training set still requires further work.
 
 Furthermore, we've found the network architecture of Bidirectional LSTM with a few dense layers reasonably effective in this particular natural language task.
 
